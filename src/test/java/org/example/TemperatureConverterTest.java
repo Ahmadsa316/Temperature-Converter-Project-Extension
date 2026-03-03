@@ -1,0 +1,40 @@
+package org.example;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class TemperatureConverterTest {
+
+    private final TemperatureConverter converter = new TemperatureConverter();
+
+    @Test
+    void testFahrenheitToCelsius() {
+        assertEquals(0.0, converter.fahrenheitToCelsius(32.0), 0.001);
+        assertEquals(100.0, converter.fahrenheitToCelsius(212.0), 0.001);
+        assertEquals(-40.0, converter.fahrenheitToCelsius(-40.0), 0.001);
+    }
+
+    @Test
+    void testCelsiusToFahrenheit() {
+        assertEquals(32.0, converter.celsiusToFahrenheit(0.0), 0.001);
+        assertEquals(212.0, converter.celsiusToFahrenheit(100.0), 0.001);
+        assertEquals(-40.0, converter.celsiusToFahrenheit(-40.0), 0.001);
+    }
+
+    @Test
+    void testIsExtremeTemperature() {
+        assertTrue(converter.isExtremeTemperature(-50.0));
+        assertTrue(converter.isExtremeTemperature(60.0));
+
+        assertFalse(converter.isExtremeTemperature(-40.0)); // boundary
+        assertFalse(converter.isExtremeTemperature(50.0));  // boundary
+        assertFalse(converter.isExtremeTemperature(20.0));  // normal
+    }
+
+    @Test
+    void testKelvinToCelsius() {
+        assertEquals(26.85, converter.kelvinToCelsius(300.0), 0.001);
+        assertEquals(0.0, converter.kelvinToCelsius(273.15), 0.001);
+        assertEquals(-273.15, converter.kelvinToCelsius(0.0), 0.001);
+    }
+}
